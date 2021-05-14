@@ -52,10 +52,16 @@ public class Fund {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Inserted a new fund record successfully";
+			
+			String newFunds = viewFunds();
+			output = "{\"status\":\"success\", \"data\": \"" + newFunds + "\"}";
+			 
+			//output = "Inserted a new fund record successfully";
 
 		} catch (Exception e) {
-			output = "Error while inserting";
+			
+			output = "{\"status\":\"error\", \"data\":\"Error while inserting the fund.\"}";
+			//output = "Error while inserting";
 			System.err.println(e.getMessage());
 		}
 
@@ -101,11 +107,17 @@ public class Fund {
 				output += "<td>" + clientID + "</td>";
 				output += "<td>" + fundAmount + "</td>";
 				output += "<td>" + status + "</td>";
+				
+				// buttons
+//				 output += "<td><input name='btnUpdate' type='button' value='Update' class =' btnUpdate btn btn-secondary' data-idfund='" + idfund + "'></td>"
+//				 + "<td><form method='post' action='funds.jsp'>"
+//				 + "<input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-idfund='" + idfund + "'>"
+//				 + "<input name='hidIdfundDelete' type='hidden'  value='" + idfund + "'>" + "</form></td></tr>"; 
+				  
 
 				// buttons
-				output += "<td><input name='btnUpdate' type='button' value='Update' class=' btnUpdate btn btn-secondary'></td>"
-						+ "<td><form method='post' action='funds.jsp'><input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
-						+ "<input name='hidIdfundDelete' type='hidden'value='" + idfund + "'>" + "</form></td></tr>";
+				output += "<td><input name='btnUpdate' type='button' value='Update' class=' btnUpdate btn btn-secondary' data-idfund='" + idfund + "'></td>" 
+				+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-idfund='" + idfund + "'></td></tr>";
 
 			}
 
@@ -150,11 +162,16 @@ public class Fund {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
+			
+			String newFunds = viewFunds();
+			output = "{\"status\":\"success\", \"data\": \"" + newFunds + "\"}";
 
-			output = "Updated successfully [ ID : " + idfund + " ]";
+			//output = "Updated successfully [ ID : " + idfund + " ]";
 
 		} catch (Exception e) {
-			output = "Error while updating the fund Id " + idfund;
+			
+			output = "{\"status\":\"error\", \"data\":\"Error while updating the fund.\"}";
+			//output = "Error while updating the fund Id " + idfund;
 			System.err.println(e.getMessage());
 		}
 
@@ -185,12 +202,17 @@ public class Fund {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
+			
+			String newFunds = viewFunds();
+			output = "{\"status\":\"success\", \"data\": \"" + newFunds + "\"}";
+			
 
-			output = "Deleted successfully [ Fund Id : " + idfund + " ]";
+			//output = "Deleted successfully [ Fund Id : " + idfund + " ]";
 
 		} catch (Exception e) {
 
-			output = "Error while deleting the  Fund Id :" + idfund;
+			output = "{\"status\":\"error\", \"data\":\"Error while deleting the fund.\"}";
+			//output = "Error while deleting the  Fund Id :" + idfund;
 			System.err.println(e.getMessage());
 		}
 
